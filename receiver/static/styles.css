@@ -1,0 +1,412 @@
+:root {
+  color-scheme: light;
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --surface-soft: #f9fbfd;
+  --text: #18202f;
+  --muted: #667085;
+  --faint: #98a2b3;
+  --line: #dde4ee;
+  --line-strong: #cbd5e1;
+  --accent: #14b8a6;
+  --accent-ink: #0f766e;
+  --warn: #d97706;
+  --danger: #dc2626;
+  --shadow: 0 18px 60px rgba(30, 41, 59, 0.10);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(20, 184, 166, 0.10), transparent 30%),
+    linear-gradient(180deg, #fbfcfe 0%, var(--bg) 100%);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.app-shell {
+  width: min(1560px, calc(100vw - 32px));
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 18px 0 20px;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 16px;
+}
+
+.topbar,
+.top-actions,
+.brand,
+.button-row {
+  display: flex;
+  align-items: center;
+}
+
+.topbar {
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.brand {
+  gap: 12px;
+}
+
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(20, 184, 166, 0.95), rgba(15, 118, 110, 0.95)),
+    #14b8a6;
+  box-shadow: 0 10px 26px rgba(20, 184, 166, 0.26);
+}
+
+h1,
+p,
+pre {
+  margin: 0;
+}
+
+h1 {
+  font-size: 22px;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.brand p {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.top-actions {
+  gap: 10px;
+}
+
+.status-chip,
+.mini-chip {
+  min-width: 78px;
+  padding: 8px 11px;
+  border: 1px solid rgba(20, 184, 166, 0.24);
+  border-radius: 8px;
+  background: rgba(20, 184, 166, 0.09);
+  color: var(--accent-ink);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.workspace {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(330px, 420px);
+  gap: 16px;
+}
+
+.message-card,
+.camera-card,
+.control-panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: var(--shadow);
+}
+
+.message-card {
+  min-height: 520px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding: clamp(28px, 7vw, 110px);
+}
+
+.section-label,
+.field span,
+.metrics span,
+.panel-title {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.received-message {
+  width: 100%;
+  min-height: 250px;
+  margin-top: 18px;
+  display: grid;
+  place-items: center;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  text-align: center;
+  color: var(--accent-ink);
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  font-size: clamp(44px, 8vw, 126px);
+  line-height: 1.04;
+}
+
+.received-message:empty::before {
+  content: "Esperando...";
+  color: #cbd5e1;
+}
+
+.received-image {
+  display: none;
+  max-width: min(82vw, 860px);
+  max-height: 58vh;
+  margin-top: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  object-fit: contain;
+  background: #0f172a;
+}
+
+.received-file {
+  display: none;
+  margin-top: 18px;
+  color: var(--accent-ink);
+  font-size: 18px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.message-card.has-image .received-message,
+.message-card.has-file .received-message {
+  min-height: auto;
+  display: block;
+  font-size: 26px;
+  line-height: 1.25;
+}
+
+.message-card.has-image .received-image,
+.message-card.has-file .received-file {
+  display: block;
+}
+
+.camera-card {
+  min-height: 0;
+  display: grid;
+  align-content: start;
+  gap: 11px;
+  padding: 12px;
+  overflow: auto;
+}
+
+.camera-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.camera-head strong {
+  display: block;
+  font-size: 15px;
+}
+
+.camera-head span:not(.mini-chip) {
+  display: block;
+  margin-top: 4px;
+  color: var(--warn);
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.video-panel {
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #111827;
+}
+
+#video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.metrics div,
+.frame-panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+}
+
+.metrics div {
+  min-height: 58px;
+  padding: 9px;
+}
+
+.metrics strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 19px;
+  line-height: 1.1;
+}
+
+.frame-panel {
+  display: grid;
+  gap: 7px;
+  padding: 9px;
+}
+
+ol {
+  display: grid;
+  gap: 4px;
+  max-height: 124px;
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #475467;
+  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  font-size: 12px;
+}
+
+.compact ol {
+  max-height: 84px;
+}
+
+.control-panel {
+  display: grid;
+  grid-template-columns: 1.2fr 1.1fr 86px 100px 100px auto minmax(170px, 1fr);
+  gap: 10px;
+  align-items: end;
+  padding: 12px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field.small {
+  min-width: 82px;
+}
+
+select,
+input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  padding: 0 11px;
+  outline: none;
+}
+
+select:focus,
+input:focus {
+  border-color: rgba(20, 184, 166, 0.72);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.12);
+}
+
+.button-row {
+  gap: 8px;
+}
+
+button {
+  height: 40px;
+  min-width: 76px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+button.ghost {
+  border-color: var(--line-strong);
+  background: #fff;
+  color: var(--text);
+}
+
+button.danger {
+  border-color: rgba(220, 38, 38, 0.22);
+  color: var(--danger);
+}
+
+.status-line {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 1050px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .camera-card {
+    order: -1;
+  }
+
+  .control-panel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .button-row,
+  .status-line {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 620px) {
+  .app-shell {
+    width: min(100vw - 20px, 1560px);
+    padding-top: 12px;
+  }
+
+  .topbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .top-actions,
+  .button-row {
+    width: 100%;
+  }
+
+  .top-actions > *,
+  .button-row > * {
+    flex: 1;
+  }
+
+  .message-card {
+    min-height: 360px;
+    padding: 24px 18px;
+  }
+
+  .metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .control-panel {
+    grid-template-columns: 1fr;
+  }
+}
