@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Optical Link Receiver</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark"></div>
+          <div>
+            <h1>Optical Link</h1>
+            <p>Recepcion local por camara</p>
+          </div>
+        </div>
+        <div class="top-actions">
+          <div class="status-chip" id="runState">activo</div>
+          <button class="ghost danger" id="shutdown">Apagar</button>
+        </div>
+      </header>
+
+      <section class="workspace">
+        <section class="message-card" aria-label="Mensaje recibido">
+          <div class="section-label">Mensaje recibido</div>
+          <pre id="message" class="received-message"></pre>
+          <img id="receivedImage" class="received-image" alt="Imagen recibida" />
+          <a id="receivedFile" class="received-file">Descargar archivo recibido</a>
+        </section>
+
+        <aside class="camera-card" aria-label="Camara y analisis">
+          <div class="camera-head">
+            <div>
+              <strong>Camara</strong>
+              <span id="decoderStatus">idle</span>
+            </div>
+            <span class="mini-chip" id="trackingState">center</span>
+          </div>
+          <div class="video-panel">
+            <img id="video" src="/video" alt="Vista de webcam" />
+          </div>
+          <div class="metrics">
+            <div><span>FPS</span><strong id="fps">0.0</strong></div>
+            <div><span>Grid</span><strong id="gridSize">25x50</strong></div>
+            <div><span>OK</span><strong id="okFrames">0</strong></div>
+            <div><span>Intentos</span><strong id="attempts">0</strong></div>
+            <div><span>CRC</span><strong id="crcFails">0</strong></div>
+            <div><span>Magic</span><strong id="magicFails">0</strong></div>
+          </div>
+          <div class="frame-panel">
+            <div class="panel-title">Tramas</div>
+            <ol id="frameEvents"></ol>
+          </div>
+          <div class="frame-panel compact">
+            <div class="panel-title">Sistema</div>
+            <ol id="logs"></ol>
+          </div>
+        </aside>
+      </section>
+
+      <section class="control-panel">
+        <label class="field">
+          <span>Modo</span>
+          <select id="mode">
+            <option value="screen">Pantalla grid</option>
+            <option value="flash">Linterna</option>
+            <option value="ir">Infrarrojos</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Tracking</span>
+          <select id="trackingMode">
+            <option value="center">Centro rapido</option>
+          </select>
+        </label>
+        <label class="field small">
+          <span>Camara</span>
+          <input id="cameraIndex" type="number" min="0" max="8" value="0" />
+        </label>
+        <label class="field small">
+          <span>Columnas</span>
+          <input id="gridCols" type="number" min="12" max="60" value="25" />
+        </label>
+        <label class="field small">
+          <span>Filas</span>
+          <input id="gridRows" type="number" min="12" max="80" value="50" />
+        </label>
+        <div class="button-row">
+          <button id="apply">Aplicar</button>
+          <button class="ghost" id="toggle">Pausar</button>
+          <button class="ghost" id="reset">Reset</button>
+        </div>
+        <div class="status-line" id="frameCounters"></div>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
