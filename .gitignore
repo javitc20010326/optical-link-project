@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Android/manual build outputs
+android/build/
+android/dist/
+android/debug.keystore
+*.apk
+!downloads/android/OpticalLink-debug.apk
+
+# Runtime state
+receiver/server.pid
+receiver/test-stream.bin
+receiver/debug_warp.png
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Temporary QA captures
+qa-*.png
+
+# Local/private helper scripts, not part of the public project
+_private/
